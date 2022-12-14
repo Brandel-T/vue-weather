@@ -4,8 +4,6 @@ import router from "./router";
 import PrimeVue from "primevue/config";
 import Card from "primevue/card";
 import Button from "primevue/button";
-import VirtualScroller from "primevue/virtualscroller";
-import DataTable from "primevue/datatable";
 
 import "primevue/resources/themes/saga-blue/theme.css";
 import "primevue/resources/primevue.min.css";
