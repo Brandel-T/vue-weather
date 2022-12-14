@@ -18,7 +18,5 @@ app.use(PrimeVue);
 
 app.component("cCard", Card);
 app.component("cButton", Button);
-app.component("VirtualScroller", VirtualScroller);
-app.component("DataTable", DataTable);
 
 app.mount("#app");
