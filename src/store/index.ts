@@ -1,7 +1,8 @@
 import { reactive } from "vue";
 import axios from "axios";
 
-const API_KEY = "263fb40ce0d757fcc65dab1bf4d97fa4";
+// https://openweathermap.org/
+const API_KEY = "OPENWEATHERMAP.ORG_API_KEY";
 
 type GeoCoords = {
   lat: number;
