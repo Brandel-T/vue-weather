@@ -10,7 +10,7 @@ type GeoCoords = {
 
 const store = reactive({
   apiKey: API_KEY,
-  location: { } as GeoCoords,
+  location: {} as GeoCoords,
   city: "Berlin",
   lang: "de",
   getLocation() {
@@ -47,6 +47,7 @@ const useOneCallWeather = async () => {
         )
         .then((response) => {
           const { current, hourly, daily } = response.data;
+
           store.currentForecast = current;
           store.hourlyForecast = hourly;
           store.dailyForecast = daily;

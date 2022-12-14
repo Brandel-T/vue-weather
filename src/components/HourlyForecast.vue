@@ -54,6 +54,8 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/styles/variables.scss";
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -90,8 +92,11 @@ export default defineComponent({
         margin: 0;
         padding-top: 0;
         font-size: 0;
-        background: #00000017;
+        // background: #00000017;
+        background-color: $color-terciary;
         border-radius: 50%;
+        box-shadow: $shadow;
+
         img {
           height: 2.2rem;
           width: 2.2rem;

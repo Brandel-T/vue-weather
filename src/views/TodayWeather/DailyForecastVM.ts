@@ -28,15 +28,16 @@ const useDailyForecastVM = () => {
   );
 
   function getDailyForecasts() {
-    const tab = daily.value.slice(0, 5);
+    const tab = daily.value.slice(0, 7);
+    console.log(tab);
 
     for (let i = 0; i < tab.length; ++i) {
       const { temp, humidity, weather } = tab[i];
       const df: DailyForecast = {
         humidity: humidity,
-        temperature: temp.day,
-        tempMax: temp.max,
-        tempMin: temp.min,
+        temperature: Math.round(temp.day - 273.15),
+        tempMax: Math.round(temp.max - 273.15),
+        tempMin: Math.round(temp.min - 273.15),
         description: weather[0].description,
         icon: weather[0].icon,
         main: weather[0].main,

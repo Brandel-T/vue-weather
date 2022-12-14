@@ -1,12 +1,11 @@
-import { reactive } from "vue"
+import { reactive } from "vue";
 
 const useMenuOverviewService = () => {
+  const state = reactive({});
 
-    const state = reactive({ })
-
-    return {
-        state
-    }
-}
+  return {
+    state,
+  };
+};
 
 export default useMenuOverviewService;

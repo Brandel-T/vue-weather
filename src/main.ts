@@ -5,6 +5,7 @@ import PrimeVue from "primevue/config";
 import Card from "primevue/card";
 import Button from "primevue/button";
 import VirtualScroller from "primevue/virtualscroller";
+import DataTable from "primevue/datatable";
 
 import "primevue/resources/themes/saga-blue/theme.css";
 import "primevue/resources/primevue.min.css";
@@ -18,5 +19,6 @@ app.use(PrimeVue);
 app.component("cCard", Card);
 app.component("cButton", Button);
 app.component("VirtualScroller", VirtualScroller);
+app.component("DataTable", DataTable);
 
 app.mount("#app");

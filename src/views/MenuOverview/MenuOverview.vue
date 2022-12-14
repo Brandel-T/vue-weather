@@ -6,14 +6,12 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: "MenuOverview",
-    components: {},
-    setup() {
-
-        return {}
-    }
-})
+  name: "MenuOverview",
+  components: {},
+  setup() {
+    return {};
+  },
+});
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

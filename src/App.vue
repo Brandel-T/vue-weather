@@ -30,7 +30,8 @@ body {
 }
 
 #app {
-  background-color: $bg-primary;
+  background-color: $color-secondary;
+  background: url("./assets/images/bg-1.jpg") bottom left no-repeat fixed;
   width: 530px;
   margin: 0 auto;
 }

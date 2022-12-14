@@ -1,7 +1,7 @@
 <template>
   <div class="today">
     <header>
-      <h1>WEATHER</h1>
+      <h1>Wetter</h1>
     </header>
     <Card>
       <template #header>
@@ -20,6 +20,7 @@
             <div class="feelslike">
               Gefühlt wie {{ currentState.currentWeather.feelsLike }}°
             </div>
+            <div>Feutchigkeit {{ currentState.currentWeather.humidity }} %</div>
           </div>
         </main>
       </template>
@@ -37,6 +38,8 @@
         </div>
       </template>
     </Card>
+
+    <DailyForecast :dailyForecasts="dailyState.dailyForecasts" />
   </div>
 </template>
 
@@ -48,12 +51,14 @@ import useCurrentWeatherVM from "./CurrentWeatherVM";
 import useHourlyForecastVM from "./HourlyForecastVM";
 import useDailyForecastVM from "./DailyForecastVM";
 import HourlyForecast from "../../components/HourlyForecast.vue";
+import DailyForecast from "../../components/DailyForecast.vue";
 
 export default defineComponent({
   name: "TodayWeather",
   components: {
     Card,
     HourlyForecast,
+    DailyForecast,
   },
   setup() {
     const { state: currentState } = useCurrentWeatherVM();
@@ -89,8 +94,9 @@ export default defineComponent({
   text-align: center;
 }
 
-:deep(.p-card) {
+header + :deep(.p-card) {
   padding: 1rem;
+  box-shadow: $shadow;
   & .p-card-header {
     .main-weather {
       @include flex-center;
@@ -109,11 +115,13 @@ export default defineComponent({
           height: 6em;
           width: 6em;
           border-radius: 50%;
-          background-color: #e3faff7e;
+          box-shadow: $shadow;
+          background-color: $color-secondary;
         }
         span {
           font-size: 2rem;
           font-weight: 500;
+          color: #fffa;
         }
       }
 
@@ -123,7 +131,8 @@ export default defineComponent({
         justify-content: space-around;
         font-size: 0.7rem;
         font-weight: 300;
-        color: $color-secondary;
+        color: $color-primary;
+        color: #fffa;
       }
     }
   }
@@ -133,10 +142,12 @@ export default defineComponent({
 
     .p-card-title {
       margin: 0;
+      color: #fffa;
     }
     .p-card-subtitle {
       font-size: 0.7rem;
       padding: 0 0 0.5rem 0;
+      color: #fffa;
     }
 
     .p-card-content {
@@ -149,5 +160,7 @@ export default defineComponent({
       }
     }
   }
+
+  background-color: #c4c2c25d;
 }
 </style>
