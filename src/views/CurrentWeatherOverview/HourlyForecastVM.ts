@@ -8,6 +8,7 @@ const useHourlyForecastVM = () => {
 
   const state = reactive({
     hourlyForecasts: [] as HourlyForecast[],
+    nextHours: [] as String[],
   });
 
   /**
@@ -19,16 +20,29 @@ const useHourlyForecastVM = () => {
    * promesses avec asnc/await
    * -- c'est la maniere de VueJS de gerer les changements d'etats
    * liées aux promesses ou operations asynchrones
+   *
+   * *************************************************************
+   *
+   * dans le store on souhaite acceder la geolocation de l'utilisateur
+   * - c'est une operation qui peut prendre un certain temps, donc au
+   *   depart les objects currentForecast, hourlyForecast et dailyForecast
+   *   sont vide lorsque les coordonnees ne sont pas encore disponibles
+   * - en attendant que ca le soit, on observe l'etat de ces objets (raison
+   *   pour laquelle ils sont placés dans un objet reactif "store") à l'aide
+   *   de la directive "watch"
+   * - et une fois que ces données sont accessibles, on appelle les methodes
+   *   "getCurrentWeather()"/"getHourlyForecasts()"/"getDailyForecasts"
    */
   watch(
     () => store.hourlyForecast,
     () => {
-      getHourlyForecasts();
+      getHourlyForecasts(getNextHours);
     }
   );
 
-  function getHourlyForecasts() {
-    const tab = hourly.value.slice(0, 5);
+  function getHourlyForecasts(getNextHoursCallback: any) {
+    const tab = hourly.value.slice(0, 7);
+
     tab.forEach((e) => {
       const { temp, feels_like, humidity, weather } = e;
       const h: HourlyForecast = {
@@ -39,8 +53,21 @@ const useHourlyForecastVM = () => {
         icon: weather[0].icon,
         main: weather[0].main,
       };
+
       state.hourlyForecasts = [...state.hourlyForecasts, ...[h]];
     });
+
+    getNextHoursCallback(tab.length);
+  }
+
+  function getNextHours(hours: number) {
+    const date = new Date();
+    const hour = date.getHours();
+
+    for (let i = 0; i < hours; ++i) {
+      const tmp = `${hour + i}:00`;
+      state.nextHours = [...state.nextHours, tmp];
+    }
   }
 
   return { state };

@@ -34,7 +34,6 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from "vue";
 import type { PropType } from "vue";
-
 import type { DailyForecast } from "@/models/models";
 
 export default defineComponent({
@@ -68,8 +67,6 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/styles/variables.scss";
-
 .daily {
   height: auto;
   width: 100%;

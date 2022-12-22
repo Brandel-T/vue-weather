@@ -19,6 +19,18 @@ const useDailyForecastVM = () => {
    * promesses avec asnc/await
    * -- c'est la maniere de VueJS de gerer les changements d'etats
    * liées aux promesses ou operations asynchrones
+   *
+   * *************************************************************
+   *
+   * dans le store on souhaite acceder la geolocation de l'utilisateur
+   * - c'est une operation qui peut prendre un certain temps, donc au
+   *   depart les objects currentForecast, hourlyForecast et dailyForecast
+   *   sont vide lorsque les coordonnees ne sont pas encore disponibles
+   * - en attendant que ca le soit, on observe l'etat de ces objets (raison
+   *   pour laquelle ils sont placés dans un objet reactif "store") à l'aide
+   *   de la directive "watch"
+   * - et une fois que ces données sont accessibles, on appelle les methodes
+   *   "getCurrentWeather()"/"getHourlyForecasts()"/"getDailyForecasts"
    */
   watch(
     () => store.dailyForecast,
@@ -29,7 +41,6 @@ const useDailyForecastVM = () => {
 
   function getDailyForecasts() {
     const tab = daily.value.slice(0, 7);
-    console.log(tab);
 
     for (let i = 0; i < tab.length; ++i) {
       const { temp, humidity, weather } = tab[i];
@@ -42,11 +53,12 @@ const useDailyForecastVM = () => {
         icon: weather[0].icon,
         main: weather[0].main,
       };
+
       state.dailyForecasts = [...state.dailyForecasts, ...[df]];
     }
   }
 
-  return { state, getDailyForecasts };
+  return { state };
 };
 
 export default useDailyForecastVM;

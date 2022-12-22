@@ -1,13 +1,14 @@
 <template>
-  <h1>WEATHER</h1>
+  <TodayWeather />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import TodayWeather from "./TodayWeather/TodayWeather.vue";
 
 export default defineComponent({
   name: "WeatherOverview",
-  components: {},
+  components: { TodayWeather },
   setup() {
     return {};
   },

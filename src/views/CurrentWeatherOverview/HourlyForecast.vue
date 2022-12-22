@@ -1,8 +1,8 @@
 <template>
-  <div class="w-hourly w-forecast">
+  <div class="w-hourly w-forecast snap-start">
     <Card>
       <template #header>
-        <span class="hour">hour</span>
+        <span class="hour">{{ hour }}</span>
       </template>
       <template #title>
         <img
@@ -43,8 +43,8 @@ export default defineComponent({
       required: false,
     },
     hour: {
-      type: Number,
-      required: false,
+      type: String,
+      required: true,
     },
   },
   setup() {
